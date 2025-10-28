@@ -13,7 +13,7 @@ public class Department {
     private Long id;
     private String name;
     private String headOfDepartment;
-    @OneToMany(mappedBy = "department")
+    @OneToMany
     private List<Teacher> teachers;
 
 }

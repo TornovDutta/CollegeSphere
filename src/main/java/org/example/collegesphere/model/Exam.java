@@ -18,5 +18,5 @@ public class Exam {
     @ManyToOne
     private Student student;
 
-    private Float mark;
+    private Float   mark;
 }
