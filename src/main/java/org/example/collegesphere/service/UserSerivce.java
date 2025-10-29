@@ -28,4 +28,10 @@ public class UserSerivce {
         }
         return null;
     }
+
+    public Integer add(Users users) {
+        Users user=userRepo.save(users);
+        return user.getId();
+    }
+
 }
