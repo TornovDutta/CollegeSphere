@@ -43,6 +43,10 @@ public class UserSerivce {
     }
 
     public void delete(int id) {
-        userRepo.removeById(id);
+        Optional<Users> user=userRepo.findById(id);
+        if(user.isPresent()){
+            userRepo.removeById(id);
+        }
+
     }
 }
