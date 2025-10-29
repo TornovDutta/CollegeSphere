@@ -41,4 +41,8 @@ public class UserSerivce {
         }
         return null;
     }
+
+    public void delete(int id) {
+        userRepo.removeById(id);
+    }
 }
