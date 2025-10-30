@@ -38,11 +38,10 @@ public class UserSerivce {
         return userRepo.save(user).getId();
     }
 
-    public void delete(int id) {
-        Optional<Users> user=userRepo.findById(id);
-        if(user.isPresent()){
-            userRepo.removeById(id);
-        }
+    public void delete(int id) throws UserNotFoundException{
+        Users user=userRepo.findById(id).orElseThrow(()->
+                new UserNotFoundException("user of id: "+id+" not found"));
+        userRepo.removeById(id);
 
     }
 }

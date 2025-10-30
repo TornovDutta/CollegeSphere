@@ -48,13 +48,9 @@ public class UserController {
         return new ResponseEntity<>(service.update(id,users),HttpStatus.OK);
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteById(@PathVariable int id){
-        try{
-            service.delete(id);
-            return new ResponseEntity<>("delete",HttpStatus.NO_CONTENT);
-        } catch (RuntimeException e) {
-            throw new RuntimeException(e);
-        }
+    public ResponseEntity<String> deleteById(@PathVariable int id) throws UserNotFoundException{
+       service.delete(id);
+       return new ResponseEntity<>("delete the "+id+"user",HttpStatus.NO_CONTENT);
     }
 
 
