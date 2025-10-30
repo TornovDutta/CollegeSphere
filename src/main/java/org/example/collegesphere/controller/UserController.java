@@ -38,18 +38,14 @@ public class UserController {
     @PostMapping()
     public ResponseEntity<Integer> create(@RequestBody Users users){
         try{
-            return new ResponseEntity<>(service.add(users),HttpStatus.OK);
+            return new ResponseEntity<>(service.add(users),HttpStatus.CREATED);
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
         }
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Integer> update(@PathVariable int id,@RequestBody Users users){
-        try{
-            return new ResponseEntity<>(service.update(id,users),HttpStatus.OK);
-        } catch (RuntimeException e) {
-            throw new RuntimeException(e);
-        }
+    public ResponseEntity<Integer> update(@PathVariable int id,@RequestBody Users users) throws UserNotFoundException{
+        return new ResponseEntity<>(service.update(id,users),HttpStatus.OK);
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteById(@PathVariable int id){

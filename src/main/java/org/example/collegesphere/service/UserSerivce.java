@@ -32,12 +32,10 @@ public class UserSerivce {
         return user.getId();
     }
 
-    public Integer update(int id, Users users) {
-        Optional<Users> user=userRepo.findById(id);
-        if(user.isPresent()){
-            userRepo.save(users);
-        }
-        return null;
+    public Integer update(int id, Users users) throws UserNotFoundException {
+        Users user=userRepo.findById(id).orElseThrow(()->
+                new UserNotFoundException("User with "+id+"not found"));
+        return userRepo.save(user).getId();
     }
 
     public void delete(int id) {
