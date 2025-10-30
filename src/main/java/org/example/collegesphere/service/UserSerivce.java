@@ -1,5 +1,6 @@
 package org.example.collegesphere.service;
 
+import org.example.collegesphere.exception.UserNotFoundException;
 import org.example.collegesphere.model.Users;
 import org.example.collegesphere.repo.UserRepo;
 import org.springframework.stereotype.Service;
@@ -21,12 +22,9 @@ public class UserSerivce {
     }
 
 
-    public Users getID(int id) {
-        Optional<Users> users=userRepo.findById(id);
-        if(users.isPresent()){
-            return users.get();
-        }
-        return null;
+    public Users getID(int id) throws UserNotFoundException {
+        return  userRepo.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User with ID " + id + " not found"));
     }
 
     public Integer add(Users users) {

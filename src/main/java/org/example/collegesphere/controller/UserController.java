@@ -1,5 +1,7 @@
 package org.example.collegesphere.controller;
 
+import org.example.collegesphere.exception.ErrorResponse;
+import org.example.collegesphere.exception.UserNotFoundException;
 import org.example.collegesphere.model.Users;
 import org.example.collegesphere.service.UserSerivce;
 import org.springframework.http.HttpStatus;
@@ -27,13 +29,11 @@ public class UserController {
         }
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Users> getById(@PathVariable int id){
-        try{
-            return new ResponseEntity<>(service.getID(id), HttpStatus.OK);
+    public ResponseEntity<?> getById(@PathVariable int id) throws UserNotFoundException{
 
-        } catch (RuntimeException e) {
-            throw new RuntimeException(e);
-        }
+        return new ResponseEntity<>(service.getID(id), HttpStatus.OK);
+
+
     }
     @PostMapping()
     public ResponseEntity<Integer> create(@RequestBody Users users){
