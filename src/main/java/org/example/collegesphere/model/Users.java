@@ -20,5 +20,12 @@ public class Users {
     private String password;
     private String email;
     private String role="STUDENT";
+    private int roleId;
+    public Users(String name,String password,String email,int roleId){
+        this.name=name;
+        this.password=password;
+        this.email=email;
+        this.roleId=roleId;
+    }
 
 }

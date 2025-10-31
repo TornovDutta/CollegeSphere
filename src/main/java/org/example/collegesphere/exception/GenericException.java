@@ -16,5 +16,15 @@ public class GenericException {
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
 
     }
+    @ExceptionHandler(StudentNotFoundException.class)
+    public ResponseEntity<?> handleStudentNotFound(StudentNotFoundException e){
+        ErrorResponse errorResponse=new ErrorResponse(LocalDateTime.now(),e.getMessage(),"students not found");
+        return new ResponseEntity<>(errorResponse,HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<?> handleException(Exception e){
+        ErrorResponse errorResponse=new ErrorResponse(LocalDateTime.now(),e.getMessage(),"somthing is wrong");
+        return new ResponseEntity<>(errorResponse,HttpStatus.NOT_FOUND);
+    }
 
 }

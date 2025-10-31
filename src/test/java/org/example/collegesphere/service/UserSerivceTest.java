@@ -28,7 +28,7 @@ class UserSerivceTest {
     @Test
     public void getTests(){
         List<Users> users=new ArrayList<>(
-               List.of( new Users(1,"Tornov","bdfvjh","tornovdutta@Gmail.com","STUDENT"))
+               List.of( new Users(1,"Tornov","bdfvjh","tornovdutta@Gmail.com","STUDENT",12))
         );
         Mockito.when(repo.findAll()).thenReturn(users);
 
@@ -39,7 +39,7 @@ class UserSerivceTest {
     @Test
     public void getIDTests() throws UserNotFoundException {
         Integer id=1;
-        Users user=new Users(1,"Tornov","bdfvjh","tornovdutta@Gmail.com","STUDENT");
+        Users user=new Users(1,"Tornov","bdfvjh","tornovdutta@Gmail.com","STUDENT",12);
 
         Mockito.when(repo.findById(id)).thenReturn(Optional.of(user));
         Users returnAns=serivce.getID(id);
@@ -49,7 +49,7 @@ class UserSerivceTest {
     }
     @Test
     public void addTest(){
-        Users users=new Users(1,"Tornov","bdfvjh","tornovdutta@Gmail.com","STUDENT");
+        Users users=new Users(1,"Tornov","bdfvjh","tornovdutta@Gmail.com","STUDENT",21);
         Mockito.when(repo.save(users)).thenReturn(users);
 
         Integer id=serivce.add(users);
@@ -59,8 +59,8 @@ class UserSerivceTest {
     @Test
     public void testUpdate_Success() throws UserNotFoundException {
         int id = 1;
-        Users existingUser = new Users(1, "Tornov", "123", "tornov@gmail.com", "STUDENT");
-        Users updatedUser = new Users(1, "Tornov Dutta", "456", "tornov@gmail.com", "ADMIN");
+        Users existingUser = new Users(1, "Tornov", "123", "tornov@gmail.com", "STUDENT",23);
+        Users updatedUser = new Users(1, "Tornov Dutta", "456", "tornov@gmail.com", "ADMIN",21);
 
         Mockito.when(repo.findById(id)).thenReturn(Optional.of(existingUser));
         Mockito.when(repo.save(existingUser)).thenReturn(updatedUser);
@@ -74,7 +74,7 @@ class UserSerivceTest {
     @Test
     public void testUpdate_UserNotFound() {
         int id = 2;
-        Users newUser = new Users(2, "Unknown", "000", "unknown@gmail.com", "STUDENT");
+        Users newUser = new Users(2, "Unknown", "000", "unknown@gmail.com", "STUDENT",34);
 
         Mockito.when(repo.findById(id)).thenReturn(Optional.empty());
 
@@ -87,7 +87,7 @@ class UserSerivceTest {
     @Test
     public void testDelete_Success() throws  UserNotFoundException{
         int id=1;
-        Users users=new Users(1,"Tornov","1234","abc@gamil.com","STUDENT");
+        Users users=new Users(1,"Tornov","1234","abc@gamil.com","STUDENT",12);
         Mockito.when(repo.findById(id)).thenReturn(Optional.of(users));
         serivce.delete(id);
         Mockito.verify(repo,Mockito.times(1)).removeById(id);

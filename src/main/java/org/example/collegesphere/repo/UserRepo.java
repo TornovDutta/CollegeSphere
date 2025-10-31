@@ -9,4 +9,8 @@ public interface UserRepo extends JpaRepository<Users,Integer> {
     void removeById(Integer id);
 
     Users id(Integer id);
+
+    int findByName(String name);
+
+    void removeByRoleId(int roleId);
 }

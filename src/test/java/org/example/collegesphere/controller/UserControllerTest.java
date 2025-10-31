@@ -28,14 +28,14 @@ class UserControllerTest {
     @Test
     public void test_getAll() throws Exception{
         List<Users> users=new ArrayList<>(
-                List.of(new Users(1,"Tornov","0000","xyz@gmail.com","STUDENT"))
+                List.of(new Users(1,"Tornov","0000","xyz@gmail.com","STUDENT",12))
         );
         Mockito.when(serivce.get()).thenReturn(users);
 
         mockMvc.perform(get("/api/v1/users")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").value("Tornov")) // ✅ Verify first user's name
+                .andExpect(jsonPath("$[0].name").value("Tornov"))
                 .andExpect(jsonPath("$[0].email").value("xyz@gmail.com"));
     }
 
