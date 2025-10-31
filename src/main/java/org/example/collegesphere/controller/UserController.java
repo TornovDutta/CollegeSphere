@@ -21,12 +21,7 @@ public class UserController {
 
     @GetMapping()
     public ResponseEntity<List<Users>> getAll(){
-        try{
-            return new ResponseEntity<>(service.get(), HttpStatus.OK);
-
-        } catch (RuntimeException e) {
-            throw new RuntimeException(e);
-        }
+        return new ResponseEntity<>(service.get(), HttpStatus.OK);
     }
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable int id) throws UserNotFoundException{
@@ -37,11 +32,7 @@ public class UserController {
     }
     @PostMapping()
     public ResponseEntity<Integer> create(@RequestBody Users users){
-        try{
-            return new ResponseEntity<>(service.add(users),HttpStatus.CREATED);
-        } catch (RuntimeException e) {
-            throw new RuntimeException(e);
-        }
+        return new ResponseEntity<>(service.add(users),HttpStatus.CREATED);
     }
     @PutMapping("/{id}")
     public ResponseEntity<Integer> update(@PathVariable int id,@RequestBody Users users) throws UserNotFoundException{
