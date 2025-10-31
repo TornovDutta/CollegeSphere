@@ -1,6 +1,5 @@
 package org.example.collegesphere.controller;
 
-import org.example.collegesphere.exception.ErrorResponse;
 import org.example.collegesphere.exception.UserNotFoundException;
 import org.example.collegesphere.model.Users;
 import org.example.collegesphere.service.UserSerivce;

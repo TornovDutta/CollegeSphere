@@ -84,9 +84,13 @@ class UserSerivceTest {
 
 
     }
-//    @Test
-//    public void deleteTest() throws UserNotFoundException{
-//
-//    }
+    @Test
+    public void testDelete_Success() throws  UserNotFoundException{
+        int id=1;
+        Users users=new Users(1,"Tornov","1234","abc@gamil.com","STUDENT");
+        Mockito.when(repo.findById(id)).thenReturn(Optional.of(users));
+        serivce.delete(id);
+        Mockito.verify(repo,Mockito.times(1)).removeById(id);
+    }
 
 }
