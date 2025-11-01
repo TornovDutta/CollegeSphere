@@ -1,5 +1,6 @@
 package org.example.collegesphere.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.example.collegesphere.exception.StudentNotFoundException;
 import org.example.collegesphere.exception.UserNotFoundException;
 import org.example.collegesphere.model.Student;
@@ -11,13 +12,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/students")
+@RequestMapping("/students")
+@RequiredArgsConstructor
 public class StudentController {
     private final StudentService service;
 
-    public StudentController(StudentService service) {
-        this.service = service;
-    }
+
 
     @GetMapping
     public ResponseEntity<List<Student>> getAll(){
