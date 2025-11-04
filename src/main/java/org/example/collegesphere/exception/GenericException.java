@@ -26,5 +26,20 @@ public class GenericException {
         ErrorResponse errorResponse=new ErrorResponse(LocalDateTime.now(),e.getMessage(),"somthing is wrong");
         return new ResponseEntity<>(errorResponse,HttpStatus.NOT_FOUND);
     }
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<?> handleRuntimeException(RuntimeException e){
+        ErrorResponse errorResponse=new ErrorResponse(LocalDateTime.now(),e.getMessage(),"Something is wrong");
+        return new ResponseEntity<>(errorResponse,HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(AdminNotFoundException.class)
+    public ResponseEntity<?> handleAdminNotFoundException(AdminNotFoundException e){
+        ErrorResponse errorResponse=new ErrorResponse(LocalDateTime.now(),e.getMessage(),"admin not found");
+        return new ResponseEntity<>(errorResponse,HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(TeacherNotFoundException.class)
+    public ResponseEntity<?> handleTeacherNotFoundException(TeacherNotFoundException e){
+        ErrorResponse errorResponse=new ErrorResponse(LocalDateTime.now(),e.getMessage(),"Teacher not found");
+        return  new ResponseEntity<>(errorResponse,HttpStatus.NOT_FOUND);
+    }
 
 }
