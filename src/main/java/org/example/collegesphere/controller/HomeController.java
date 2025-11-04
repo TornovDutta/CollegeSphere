@@ -10,7 +10,7 @@ public class HomeController {
     @GetMapping("/")
     public ResponseEntity<Void> home() {
         return ResponseEntity.status(302)
-                .header("Location", "/swagger-ui/index.html")
+                .header("Location", "/api/v1/swagger-ui/index.html")
                 .build();
     }
 
